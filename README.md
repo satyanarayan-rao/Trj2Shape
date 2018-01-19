@@ -22,7 +22,7 @@ using this tool (a lot of details are being skipped here).
 With [Gromacs](http://www.gromacs.org/) as a MD simulator, we get trajectory
 files with extension `.xtc`.
 
-From the `.xtc` files we can get snapshot of DNA part of the complex in a
+From the `.xtc` files we can get snapshots of DNA part of the complex in a
 periodic manner. The following command shows how to retrieve the snapshots.
 
 ```bash  
@@ -32,7 +32,7 @@ trjconv_mpi -s 4cyc_pr9.tpr -sep -f 4cyc_all_fixed.xtc -o .pdb -skip 5
 Select a group: 12 <choose the one says DNA>
 ```
 
-Few important points for the above commmand: 
+Few important points for the above command: 
 
 ----- 
 
@@ -42,9 +42,40 @@ Few important points for the above commmand:
   you have `500 ns` data then you are going to get  500ns / 5ps =
   10<sup>5</sup> `pdb` files.
 
+The above command will take a **while** to finish (depending on the `.txc` file
+size)!
 
+## Running Curves
 
+(Curves)[https://bisi.ibcp.fr/tools/curves_plus/]  is an algorithm for
+calculating the helical parameter description of any irregular nucleic acid
+segment with respect to its optimal, global helical axis (taken verbatim for
+[here](http://www.csb.yale.edu/userguides/datamanip/curves/doc.html)). We use
+the version 5.3, and the [source code](./Curves/Curves5.3.tar)/binary is
+included here (see [Curves](./Curves)). Instructions to install are as follows: 
 
+```bash
+$ cd Curves
+$ tar -xvf Curves5.3.tar
+$ make 
+$ 
+```
+You should see a binary file named `Cur5`. We'll using this for downstream
+analyses.
 
+### Pre-processing MD snapshots
+Unfortunately, Curves program only recognizes letter {'A', 'C', 'G', 'T'} as
+DNA alphabet. And most of the time we see the nucleotides as {'DA', 'DC', 'DG',
+'DT'} in PDB files. To comply with Curves format, we have to pre-process the
+snapshots. 
 
+Since we are dealing with a lot of snapshots (pdbs) here, its preferable to write
+shell scripts/one-liners.
 
+```
+# list all the pdbs in numerical order
+
+$ ls -v *.pdb > pdbList 
+$ nohup sh rename-nuc.sh pdbList &
+```
+Again, this command will take a while to finish!
