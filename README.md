@@ -12,6 +12,10 @@ profiles that helps make better conclusions about the interaction mechanism.
 The documentation elaborates on the steps involved in getting to DNA shape data
 from MD trajectories.
 
+This documentation assumes **${Trj2Shape}** shell variable as github cloned path.
+Its preferred to use `Trj2Shape` scripts in existing data directories. It saves
+data I/O operations.
+
 ## MD trajectories
 
 The general practice in MD simulation of a given system is that we do
@@ -79,3 +83,39 @@ $ ls -v *.pdb > pdbList
 $ nohup sh rename-nuc.sh pdbList &
 ```
 Again, this command will take a while to finish!
+
+## Curves input
+
+Since `Curves` is a legacy program, input format for this is quite different
+than current practices. Here I show an example: 
+```bash
+$ cat common.crv
+ &inp file=common.pdb,dinu=.t.,comb=.t.,fit=.t.,
+ lis=common,pdb=,grv=.t., &end
+2  13 -13 0 0
+1 2 3  4 5 6 7 8 9 10 11 12 13
+26 25 24 23 22 21 20 19 18 17 16 15 14
+0. 0. 0. 0.
+```
+**2 13 -13 0 0**: This line indicates that your DNA is a duplex helix (2) of
+length 13. -13 indicated the reverse strand.
+
+The two lines (numbered `1-13` and `26-14`) are the base to base pairing. Here
+are some important notes for writing these two lines:
+
++ Check the PDB file
+
+    - It helps to open the file in Pymol or other similar program and check one
+      of two bases on forward strand and their paring on the other strand
+
+    - Your first residue may have the id number not starting at 1 (can start
+      from 3, 4 or any other number, sometimes negative numbers). But Curves
+      (at least the version I am discussing here) only takes ids starting from
+      1. So you have to do the mapping.
+
+```bash
+$ sh generateCRVforPDB.sh pdbList
+
+```
+
+The above script makes generate `.crv` file for each snapshot.

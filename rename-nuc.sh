@@ -1,8 +1,11 @@
 #!/bin/bash
 if [ $# -lt 1 ]
 then
-    echo -e "\tUsage sh $0 <pdbList>\n"
-    echo -e "\tDescription: rename nucleotides in the PDB file, for exmaple, 'DA' to ' A' (Note the space)"
+    echo -e "\tUsage: sh $0 <pdbList>\n"
+    echo -e "\t\t<pdbList>: a file containing pdb names"
+    echo -e "\t\tDescription: rename nucleotides in the PDB file, for exmaple, 'DA' to ' A' (Note the space)"
+    echo -e "\texiting ..."
+    exit 
 fi
 
 pdbList=$1
