@@ -46,12 +46,12 @@ Few important points for the above command:
   you have `500 ns` data then you are going to get  500ns / 5ps =
   10<sup>5</sup> `pdb` files.
 
-The above command will take a **while** to finish (depending on the `.txc` file
+The above command will take a **while** to finish (depending on the `.xtc` file
 size)!
 
 ## Running Curves
 
-(Curves)[https://bisi.ibcp.fr/tools/curves_plus/]  is an algorithm for
+[Curves](https://bisi.ibcp.fr/tools/curves_plus/)  is an algorithm for
 calculating the helical parameter description of any irregular nucleic acid
 segment with respect to its optimal, global helical axis (taken verbatim for
 [here](http://www.csb.yale.edu/userguides/datamanip/curves/doc.html)). We use
@@ -111,7 +111,7 @@ are some important notes for writing these two lines:
     - Your first residue may have the id number not starting at 1 (can start
       from 3, 4 or any other number, sometimes negative numbers). But Curves
       (at least the version I am discussing here) only takes ids starting from
-      1. So you have to do the mapping.
+      `1`. So you have to do the mapping.
 
 ```bash
 $ sh generateCRVforPDB.sh pdbList
@@ -119,3 +119,5 @@ $ sh generateCRVforPDB.sh pdbList
 ```
 
 The above script makes generate `.crv` file for each snapshot.
+
+
