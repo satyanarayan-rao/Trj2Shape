@@ -49,6 +49,13 @@ Few important points for the above command:
 The above command will take a **while** to finish (depending on the `.xtc` file
 size)!
 
+## Minimal scripting
+
+Extracting shape information from these snapshots requires a couple of steps
+which I've incorporated in minimum number of scripts to save I/O operations and
+diskspace. The script `generateLIS_and_DeleteCRV.sh` implements
+
+
 ## Running Curves
 
 [Curves](https://bisi.ibcp.fr/tools/curves_plus/)  is an algorithm for
