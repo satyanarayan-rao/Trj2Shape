@@ -17,10 +17,12 @@ Few important notes:
     - The hpc environment may differ (depending on what cluster manager is
       running)
     - **cd** to the directory where you want to save the snapshots inside the script. Please
-      customize to your needs 
+      customize to your needs
+    - It is advisable to copy relevant scripts to the data directory. 
 
 ```bash
 $ cd data
+$ cp ../scripts/snapshot_generator_on_cluster.sh . 
 $ ls *.xtc *.tpr
 3n4m_prod01-12_every10ps_tr1.xtc  3n4m_prod05.tpr
 
