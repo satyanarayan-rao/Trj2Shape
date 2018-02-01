@@ -12,6 +12,9 @@ profiles that helps make better conclusions about the interaction mechanism.
 The documentation elaborates on the steps involved in getting to DNA shape data
 from MD trajectories.
 
+If you want to run `Trj2Shape` in high-throughput manner, please follow
+[this](./README.cluster_version.md) documentation. 
+
 This documentation assumes **${Trj2Shape}** shell variable as github cloned path.
 Its preferred to use `Trj2Shape` scripts in existing data directories. It saves
 data I/O operations.
