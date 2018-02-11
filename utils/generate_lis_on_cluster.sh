@@ -7,4 +7,4 @@
 #PBS -q cmb
 
 cd $dir 
-sh generateLIS_and_DeleteCRV.sh $pdbList
+sh generate_lis_and_delete_crv.sh $pdbList $CRV_BIN
