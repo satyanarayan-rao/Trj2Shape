@@ -6,7 +6,7 @@ interaction, researchers use Molecular Dynamics (MD) simulations followed by
 the trajectory analyses. `Trj2Shape` is designed to analyze the DNA shape
 profiles that helps make better conclusions about the interaction mechanism.
 
-`Trj2Shape` currently analyzes four DNA shape features–Minor Groove Width
+`Trj2Shape` currently analyzes four DNA shape features— Minor Groove Width
 (MGW), Propeller Twist (ProT), Helix Twist (HelT) and Roll angle (Roll). 
 
 The documentation elaborates on the steps involved in getting to DNA shape data
