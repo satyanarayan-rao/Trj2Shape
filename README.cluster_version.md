@@ -32,16 +32,26 @@ $ qsub -v "selection=12,tpr=3n4m_prod05.tpr,xtc=3n4m_prod01-12_every10ps_tr1.xtc
 We run Curves to get `lis` file for each snapshot. To know the preprocessing
 and related concepts, please see [here](./Curves.processing.md).
 
-```{bash}
+```bash
 $ cd ${Trj2Shape}/data # change to the data directory 
 $ cp ${Trj2Shape}/utils/run_lis_generation_in_batches.sh . # copy relevant scripts to the data directory 
 $ cp ${Trj2Shape}/utils/generate_lis_on_cluster.sh .
 $ cp ${Trj2Shape}/utils/generate_lis_and_delete_crv.sh . 
-$ ls -v *.pdb > pdbList
+$ find ./ -maxdepth 1 -name "*.pdb" | sort -V  | sed 's:./::g' > pdbList 
 $ split -l10000 pdbList pdbList -d 
 $ ls -v pdbList?* > listOfpdbList
 $ sh run_lis_generation_in_batches.sh listOfpdbList /panfs/cmb-panasas2/satyanar/workplace/tools/Curve/Cur5
 
 ```
 For 30K snapshots with DNA of 20bp length, it took around **30 minutes** to get all the snapshots. 
+
+
+## Getting values for shape features
+
+The following couple of commands will generate designated files containing shape feature values for each snapshot.
+```bash
+$ find ./ -maxdepth 1 -name "*.lis" | sort -V  | sed 's:./::g' > lisList
+$ awk '{print $1"\t"0"\t"0}' lisList > lisList_with_Offset # 0 0 here is basically saying do not chop off any information from either ends of sequence while processing.
+
+```
 
