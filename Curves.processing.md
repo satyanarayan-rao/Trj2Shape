@@ -41,15 +41,16 @@ than current practices. Here I show an example:
 $ cat common.crv
  &inp file=common.pdb,dinu=.t.,comb=.t.,fit=.t.,
  lis=common,pdb=,grv=.t., &end
-2  13 -13 0 0
-1 2 3  4 5 6 7 8 9 10 11 12 13
-26 25 24 23 22 21 20 19 18 17 16 15 14
+2  20 -20 0 0
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20
+44 43 42 41 40 39 38 37 36 35 34 33 32 31 30 29 28 27 26 25 
 0. 0. 0. 0.
 ```
-**2 13 -13 0 0**: This line indicates that your DNA is a duplex helix (2) of
-length 13. -13 indicated the reverse strand.
+**2 20 -20 0 0**: This line indicates that DNA is a duplex helix (2) and number
+of nucleotides considered here for the analyses is 20. –13 indicated the
+reverse strand.
 
-The two lines (numbered `1-13` and `26-14`) are the base to base pairing. Here
+The two lines (numbered `1-20` and `44-25`) are the base to base pairing. Here
 are some important notes for writing these two lines:
 
 + Check the PDB file

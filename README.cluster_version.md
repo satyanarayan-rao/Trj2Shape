@@ -65,5 +65,31 @@ these instances in the shape features files is that you get to see values at
 each time point. If you want to filter these entries, please use the following
 script:
 
+```bash
+python ${Trj2Shape}/utils/artifact_purger.py \
+    -i ${Trj2Shape}/data/trj2shape_3n4m.MGW \
+    -a ${Trj2Shape}/data/trj2shape_3n4m.artifact \
+    -o ${Trj2Shape}/data/trj2shape_3n4m.MGW.artifact_purged
 
+```
+
+Same can be done for other shape features.
+
+## Calculating average shape feature profiles 
+
+Till now we have produced time-point shape feature values. We can take the
+opoortunity to display the average shape feature profile (with standard
+deviation as error bars) to see the overall pattern of feature values along the
+DNA sequence. To do so, one can simply get these numbers by using the following
+python script. 
+
+NOTE: it is highly recommended that you purge the artifacts first to avoid averaging the outliers! 
+
+```bash
+$ python ${Trj2Shape}/utils/avg_shape_profiler.py \
+      -i ${Trj2Shape}/data/trj2shape_3n4m.MGW.artifact_purged \
+      -o ${Trj2Shape}/data/trj2shape_3n4m.artifact_purged.avg.MGW
+```
+ 
+Again, it can be done for other three shape features! 
 
