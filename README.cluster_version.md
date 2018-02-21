@@ -50,8 +50,20 @@ For 30K snapshots with DNA of 20bp length, it took around **30 minutes** to get 
 
 The following couple of commands will generate designated files containing shape feature values for each snapshot.
 ```bash
+$ 
 $ find ./ -maxdepth 1 -name "*.lis" | sort -V  | sed 's:./::g' > lisList
 $ awk '{print $1"\t"0"\t"0}' lisList > lisList_with_Offset # 0 0 here is basically saying do not chop off any information from either ends of sequence while processing.
 
+$ python ${Trj2Shape}/utils/lis_to_shape_profiler.py -i lisList_with_Offset -c ${Trj2Shape}/utils/artifact.yaml -w trj2shape_3n4m
 ```
+
+You should be able to see four files, trj2shape\_3n4m.{MGW, Roll, HelT, ProT}. 
+
+Please note that these files include values from found artifacts (see
+${Trj2Shape}/data/trj2shape_3n4m.artifact) too. The motivation behind keeping
+these instances in the shape features files is that you get to see values at
+each time point. If you want to filter these entries, please use the following
+script:
+
+
 

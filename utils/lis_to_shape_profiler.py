@@ -6,14 +6,16 @@ from math import sqrt
 from optparse import OptionParser
 from isfloat import isfloat
 import math
+import yaml
+
 
 parser = OptionParser()
 parser.add_option("-i", "--in", dest="filename",
                   help="input file containing the list of nonartifact files with start and end position:" \
                        "so every line will have three columns, <filename > <start pos> < end pos> : <start pos> position 5'"\
-                       "side you want start considering to use in building querytable, <end pos> position from last (3') you"\
-                       "want to stop considering to use in query table. Generally start and end pos values are 4 and 4, because"\
-                       "we run MC simulations with CGCG flanks (4bps), and we do not include these in counting.(for example nonartifact.txt) ", metavar="FILE")
+                       "start offset to use; <end pos> stop offset - indexed from the end.", metavar="FILE")
+parser.add_option("-c", "--config", dest="artifact_config",
+        help="an input yaml file describing the acceptable range for shape features")
 #parser.add_option("-o", "--offset", dest="offset",
 #                 help="Number of nucleotides to be ignored from both ends of a sequence", metavar="NUM")
 parser.add_option("-w", "--write", dest="outfile",
@@ -27,6 +29,8 @@ if len(sys.argv) == 1:
 
 filename = options.filename
 output_file = options.outfile
+artifact_config_file = options.artifact_config
+artifact_config = yaml.load(open(artifact_config_file).read())
 
 minor_file_list = []
 major_file_list = []
@@ -66,9 +70,11 @@ for  minor_file in minor_file_list:
         if i > 1 and len (ccmatrix_K[i-1]) > 1  and len (ccmatrix_K[i]) > 1 :  
             if isfloat (ccmatrix_K[i-1][-1]) and isfloat (ccmatrix_K[i][0]) and isfloat(ccmatrix_K[i][1]): 
                 Ave_MGW = ( float (ccmatrix_K[i-1][-1]) + float (ccmatrix_K[i][0]) + float (ccmatrix_K[i][1]) ) /3
-                if Ave_MGW > 12 or Ave_MGW < 1.5: 
+                if Ave_MGW > artifact_config['shape_features']['MGW']['max'] or\
+                        Ave_MGW < artifact_config['shape_features']['MGW']['min']: 
                     #MGW_profile.append ('-1')
-                    MGW_profile.append ('NA')
+                    #MGW_profile.append ('NA')
+                    MGW_profile.append (str (round ( Ave_MGW,3))) 
                     is_artifact = True
 
                 else: 
