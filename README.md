@@ -9,21 +9,19 @@ profiles that helps make better conclusions about the interaction mechanism.
 `Trj2Shape` currently analyzes four DNA shape features— Minor Groove Width
 (MGW), Propeller Twist (ProT), Helix Twist (HelT) and Roll angle (Roll). 
 
-The documentation elaborates on the steps involved in getting to DNA shape data
-from MD trajectories.
 
-If you want to run `Trj2Shape` in high-throughput manner, please follow
-[this](./README.cluster_version.md) documentation. 
+
+I've created three different READMEs serving different purposes:
+
+- MD snapshots generation, see [here](./MD.trj.processing.md)
+- High-throughput version of Trj2Shape, see [here](./README.cluster_version.md)
+- Curves processing basics, see [here](./Curves.processing.md)
+
 
 This documentation assumes **${Trj2Shape}** shell variable as github cloned path.
 Its preferred to use `Trj2Shape` scripts in existing data directories. It saves
 data I/O operations.
 
-Documentation about generating snapshots from a given production stage
-trajectory file can be found [here](./MD.trj.processing.md).
-
-Documentation about insight to data processing by Curves can be found
-[here](./Curves.processing.md).
 
 
 The goal for this work to come up with shape profiles like the following (shown
