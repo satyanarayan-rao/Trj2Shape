@@ -26,3 +26,12 @@ Documentation about insight to data processing by Curves can be found
 [here](./Curves.processing.md).
 
 
+The goal for this work to come up with shape profiles like the following (shown
+here for MGW).
+
+i![alt_text](avg_MGW)
+
+[avg_MGW]: ./visualization/avg_MGW_3n4m.MGW.png
+
+
+
