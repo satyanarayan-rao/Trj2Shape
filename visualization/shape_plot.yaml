@@ -1,2 +1,4 @@
 shape_features_data:
     MGW: ../data/Trj2Shape_3n4m.artifact_purged.avg.MGW
+
+plot_reverse: True # it will plot from 3
