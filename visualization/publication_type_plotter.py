@@ -57,7 +57,16 @@ def plot_bp_feature(config_dict=None, feature=None, ax=None):
             sep="\s+",
             header='infer')
     sub_df = df[3:17]
-    sns.set_style("white", {"ytick.major.size":"5", "xtick.major.size":"5", 'font.family': [u'Arial']} )#, rc={'text.usetex': True} )
+    nucs="TTTTCCTAAAATGT"
+    sns.set_style("white", {"ytick.major.size":"5",
+        "xtick.major.size":"5",
+        'font.family': [u'Arial']} )#, rc={'text.usetex': True} )
+    if config_dict.plot_reverse is True:
+        nucs = nucs[::-1]
+        #sub_df['ResId'] = sub_df['ResId'][::-1].tolist()
+        sub_df = sub_df[::-1]
+        sub_df['ResId'] = sub_df['ResId'][::-1].tolist()
+
     sns.set_context('paper', font_scale=1.25)
     subplt = sns.pointplot(data=sub_df, x="ResId", y="Mean")
     x_coords = []
@@ -74,7 +83,6 @@ def plot_bp_feature(config_dict=None, feature=None, ax=None):
     subplt.set_ylabel(__y_label_dict__[feature])
     ax.yaxis.set_major_formatter(majorFormatter)
     subplt.set_xlabel('')
-    nucs="TTTTCCTAAAATGT"
     subplt.set_xticklabels(labels=list(nucs))
     return subplt
 
